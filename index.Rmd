@@ -802,7 +802,7 @@ class: bg-rladies animated slideInLeft middle white center
 
 .f2[We'll use the above package to draw faces.]
 
-Note: the above package was made for only demonstration purpose for this talk.
+Note: the above package was made for demonstration purpose only for this talk.
 
 
 ---
@@ -1456,10 +1456,6 @@ A **plan** or **layout** is the design translated into actual units; randomisati
 
 
 
-.absolute.top-0.right-1[
-[<i class="fas fa-caret-right"></i>](#edibble)
-]
-
 
 .footnote[
 Bailey, R. (2008). Design of Comparative Experiments (Cambridge Series in Statistical and Probabilistic Mathematics). Cambridge: Cambridge University Press. doi:10.1017/CBO9780511611483
@@ -2064,7 +2060,7 @@ background-size: 100% 100%
 .flex[
 .w-60.pr3[
 .summary-box.w-100[
-* The <span class="red">*grammar of experimental design*</span> is a (programming language agnostic) framework that functionally maps the fundamental components of the experiment to an object oriented programming system to build and modify an experimental design, i.e. <i class="red">reframes construction of experimental design using software</i>
+* The <span class="red">*grammar of experimental design*</span> is a (programming language agnostic) framework that functionally maps the fundamental components of the experiment to an object oriented programming system to build and modify an experimental design, i.e. <i class="red">reframes how we construct experimental design using software</i>
 {{content}}
 ]
 ]
