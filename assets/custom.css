@@ -1,0 +1,50 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Lalezar&display=swap');
+
+.display.dataTable {
+  font-size: 15pt;
+}
+
+.monash-bg-blue a {
+  color: white!important;
+}
+
+.yellow a {
+  color: #FFEB3B!important;
+}
+
+.absolute {
+  position: absolute!important;
+}
+
+.w-100 { width: 100%!important; }
+.w-40 { width: 40%!important; }
+.w-30 { width: 30%!important; }
+.w-25 { width: 25%!important; }
+.w-20 { width: 20%!important; }
+.w-15 { width: 15%!important; }
+
+.remark-code-line-highlighted {
+    background-color: rgba(136,57,138, 0.3);
+}
+
+tr:nth-child(odd) {
+    background: white;
+}
+
+thead tr {
+    background: #5A5A5A!important;
+}
+
+thead tr th {
+  color: white!important;
+}
+
+.unfocus {
+  filter: sepia(100);
+}
+
+.remove-filter {
+  filter: none;
+}
+

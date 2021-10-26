@@ -1,0 +1,39 @@
+
+
+background-size: cover
+class: title-slide
+background-image: url("`r titlebgimg`")
+
+
+You can find this slide at 
+
+
+.center[
+<i class="fas fa-link"></i> [emitanaka.org/plotting-with-R](https://emitanaka.org/plotting-with-R)
+]
+
+and for those interested in the code, 
+
+
+.center[
+<i class="fab fa-github"></i> [github.com/emitanaka/plotting-with-R](https://github.com/emitanaka/plotting-with-R)
+]
+
+
+.bottom_abs.width100[
+
+Presenter: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+<i class="fas fa-envelope"></i>  `r rmarkdown::metadata$email` &nbsp;&nbsp;<i class="fab fa-twitter"></i> @statsgen
+
+<i class="fas fa-calendar-alt"></i> `r rmarkdown::metadata$date`
+
+<br>
+
+]
+
+
+
+

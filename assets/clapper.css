@@ -1,0 +1,37 @@
+.clapper {
+    background-color: #111;
+    height: 80px;
+    width: 100px;
+    position: relative;
+    margin: auto;
+    border-radius: 5px;
+}
+.clapper > .clapper-top,  .clapper > .clapper-bottom {
+    background: repeating-linear-gradient(135deg, #111 0%, #111 10%, #fff 10%, #fff 20%);
+    height: 10px;
+    width: 110px;
+    position: absolute;
+    left: -5px;
+    top: 0;
+}
+
+.clapper > .clapper-top {
+    background: repeating-linear-gradient(-135deg, #fff 0%, #fff 10%, #111 10%, #111 20%);
+    top: -10px;
+}
+
+.clapper > .clapper-top {
+  animation-name: clapper-open;
+  transform-origin: left;
+  animation-duration: .35s;
+  animation-timing-function: ease-out;
+  animation-delay: 1s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+
+@keyframes clapper-open {
+  to {
+    transform: rotate(-80deg);
+  }
+}

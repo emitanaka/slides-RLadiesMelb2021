@@ -1,0 +1,281 @@
+
+/* some fixes */
+
+@media print {
+  .remark-slide-scaler {
+    width: 100%!important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}
+
+p {
+  margin-block-start: 10px;
+  margin-block-end: 0;
+}
+
+/* because of ninjutsu */
+
+h2, h3, p {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+pre {
+  margin: 0;
+}
+
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+
+
+
+a {
+  color: #027EB6;
+  text-decoration: none;
+}
+
+.footnote {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-left:5px;
+  padding-right:5px;
+  padding-top: 4px;
+  padding-bottom:  4px;
+  color: rgb(231, 240, 243);
+  font-size: 18pt;
+}
+
+:not(.footer-slide) > .footnote {
+  background-color: #5A5A5A;
+}
+
+.footnote a {
+  color: white!important;
+}
+
+
+
+.remark-slide-number { font-size: 12pt; }
+.remark-slide-content:not(.title-slide):not(.transition) h1:first-of-type { 
+  padding: 10px; 
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #562457;
+  color: white;
+  margin-top: -25px;
+  margin-left: -25px;
+  margin-right: -25px;
+}
+
+
+.wider {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.pull-left {
+  float: left;
+  width: 47%;
+}
+.pull-right {
+  float: right;
+  width: 47%;
+}
+
+.grid, .grid-col, .grid-row {
+  display: grid;
+  width: calc(100%);
+  height: 100%;
+}
+
+.grid, .grid-col {
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+.grid-row {
+  grid-auto-flow: row;
+  grid-auto-rows: 1fr;
+}
+
+.shade_black > a {
+  color: white!important;
+}
+
+
+.remark-code { font-size: 0.75em; }
+.font_small .remark-code { font-size: 0.8em;}
+.font_smaller .remark-code { font-size: 0.7em; }
+.font_smaller2 .remark-code { font-size: 0.6em; }
+
+
+li { margin: 10px 0; }
+
+
+.shade_black  {
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    width: 100%;
+    padding: 0;
+}
+.shade_black > a {
+  color: white!important;
+}
+
+
+
+
+
+.remark-slide-content {
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: table-cell;
+    font-size: 24px;
+    padding: 25px 25px 25px 25px;
+}
+
+
+.fullscreen {
+  padding: 0 0 0 0!important;
+}
+
+.clear-list ul {
+  list-style: none;
+}
+
+.li-aim::before, .li-data::before {
+  font-weight: 900;
+  font-family: var(--fa-style-family, "Font Awesome 6 Free");
+  left: 30px;
+  position: absolute;
+}
+
+.li-aim::before {
+  content: "\f05b";
+}
+
+.li-data::before {
+  content: "\f1c0";
+}
+
+.scroll-sign::after {
+  content: "scroll ↓";
+  position: relative;
+  left: 47%;
+}
+
+.img-shadow {
+  box-shadow: 12px 12px 29px #555;
+}
+
+.box {
+  color: #562457;
+  background-color: white;
+  width: 100px!important;
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.square-box {
+  color: white;
+  display: inline-block;
+  background-color: #562457;
+  font-weight: bold;
+  padding: 7px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 25px;
+  text-align: center;
+}
+
+.box:hover:before {
+  font-family: var(--fa-style-family, "Font Awesome 6 Free");
+  content: "\f554";
+  left: -30px;
+  color: white;
+  font-weight: 900;
+  position: absolute;
+}
+
+.bg-shadow {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+
+
+
+.r-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  margin: 1px;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  text-align: center;
+  color: #562457;
+}
+
+.r-button:hover {
+  border: 1px solid gray;
+}
+
+.r-code {
+  position: absolute;
+  width: 50%;
+  right: 10px;
+  bottom: 10px;
+  font-size: 18px;
+  border: 1px solid black;
+  z-index: 90;
+  display: none;
+}
+
+.r-button  p {
+  margin-block-start: 0px;
+}
+
+.r-button:active + .r-code {
+  display: block;
+}
+
+.circle {
+  border-radius: 50%;
+  background-color: white;
+  color: #562457;
+}
+
+.black code {
+  color: black!important;
+}

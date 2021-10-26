@@ -1,0 +1,2614 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The Art of Design</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emi Tanaka" />
+    <script src="lib/header-attrs-2.11/header-attrs.js"></script>
+    <link href="lib/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="lib/fontawesome-free-6.0.0-beta2-web/css/all.min.css">
+    <script src="lib/fontawesome-free-6.0.0-beta2-web/js/all.min.js"></script>
+    <link rel="stylesheet" href="assets/tachyons-addon.css" type="text/css" />
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/fira-code.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/table.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/slide-types.css" type="text/css" />
+    <link rel="stylesheet" href="assets/scroll.css" type="text/css" />
+    <link rel="stylesheet" href="assets/fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/animate-text.css" type="text/css" />
+    <link rel="stylesheet" href="assets/clapper.css" type="text/css" />
+    <link rel="stylesheet" href="assets/rladies.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: middle center hide-slide-number monash-bg-gray80
+
+
+
+
+
+.info-box.w-50.bg-white.f3[
+These slides are viewed best by Chrome or Firefox and occasionally need to be refreshed if elements did not load properly. See &lt;a href=emi-tanaka-talk.pdf&gt;here for the PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;.
+]
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+
+
+---
+
+count: false
+class: fullscreen title-slide
+background-image: url("images/art-01.png")
+background-size: cover
+
+&lt;br&gt;
+
+.pl3[
+# .gray[The Art of Design]
+
+.animate-text[
+.monash-green2[.s[S].s[o].s[f].s[t].s[w].s[a].s[r].s[e]] &amp; &lt;br&gt;&amp;emsp; .monash-ruby2[.s[E].s[x].s[p].s[e].s[r].s[i].s[m].s[e].s[n].s[t].s[a].s[l]] Design
+]
+
+]
+
+.bottom_abs.w-100.bg-shadow.h-45.slideInUp.animated.pl3.delay-1s[
+
+Presenter: *Emi Tanaka*
+
+.f3[
+Department of Econometrics and Business Statistics  
+&lt;img src="images/accessories/monash-stacked-reversed-white.png" height="100px"&gt;  
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  emi.tanaka@monash.edu &amp;nbsp;&amp;nbsp;&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; @statsgen
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Tue 26th Oct 2021 | R-Ladies Melbourne
+
+&lt;br&gt;
+
+]
+
+]
+
+.r-button[
+&lt;i class="fab fa-r-project animated rotate"&gt;&lt;/i&gt;
+]
+.r-code[
+
+```r
+library(ggplot2)
+library(mathart)
+df1 &lt;- harmonograph(A1 = 1, A2 = 1.5, A3 = 1, A4 = 1,
+                    d1 = 0.004, d2 = 0.0065, d3 = 0.008, d4 = 0.019,
+                    f1 = 3.001, f2 = 2, f3 = 3, f4 = 2,
+                    p1 = 0, p2 = pi/4, p3 = pi/2, p4 = 3*pi/2)
+ggplot(df1, aes(x, y)) +
+  geom_path(alpha = 0.4, size = 0.4, color = "#181818") +
+  coord_equal() +
+  xlim(min(df1$x) - 5, max(df1$x) + 1) +
+  annotate("text", x = max(df1$x) + 0.2, y = max(df1$y) - 0.2, 
+           label = "Harmonograph", color = "gray",
+           family = "Atma", size = 6) + 
+  theme_void()
+```
+
+]
+
+---
+
+class: fullscreen
+
+.flex.h-100.bg-rladies-dark[
+.w-75.white.pa3.f1[
+
+
+.header.f1[&lt;i class="fas fa-theater-masks"&gt;&lt;/i&gt; Now Showing]
+
+.f2.pa3.lh-copy[
+
+.box[Act I] **Software design**  
+.f3[&lt;i class="fas fa-smile-beam"&gt;&lt;/i&gt; Drawing faces under different .yellow[programming paradigms]]   
+.box[Act II] **Experimental design**  
+.f3[&lt;i class="fas fa-grimace"&gt;&lt;/i&gt; Comparative experiments with `edibble`]
+
+
+.border-box.bg-rladies.white.f3[
+.center[
+&lt;i class="fas fa-link"&gt;&lt;/i&gt; These slides made using R powered by HTML/CSS/JS can be found at&lt;br&gt;&lt;a style="color:yellow!important" href="https://emitanaka.org/slides-RLadiesMelb2021"&gt;emitanaka.org/slides-RLadiesMelb2021&lt;/a&gt;&lt;br&gt;
+&lt;i class="fab fa-github"&gt;&lt;/i&gt; All code to reproduce this slide can be found at &lt;a style="color:yellow!important" href="https://github.com/emitanaka/slides-RLadiesMelb2021"&gt;github.com/emitanaka/slides-RLadiesMelb2021&lt;/a&gt;
+
+]]
+
+]]
+.w-25[
+&lt;Br&gt;
+&lt;img src="images/art-02.png" width="100%"&gt;
+]]
+
+.r-button[
+&lt;i class="fab fa-r-project white"&gt;&lt;/i&gt;
+]
+.r-code[
+
+```r
+library(ggplot2)
+library(mathart)
+df2 &lt;- fractal_fern(n = 250000,
+                    a = c(0, 0.85, 0.2, -0.15),
+                    b = c(0, 0.04, -0.26, 0.28),
+                    c = c(0, -0.04, 0.23, 0.26),
+                    d = c(0.16, 0.85, 0.22, 0.24),
+                    e = c(0, 0, 0, 0),
+                    f = c(0, 1.6, 1.6, 0.44),
+                    p = c(0.01, 0.85, 0.07, 0.07))
+ggplot(df2, aes(x, y)) +
+  geom_point(size = 0.03, alpha = 0.06, color = "white") +
+  coord_equal() +
+  labs(caption = "Fractal ferns") +
+  theme_blankcanvas(margin_cm = 1) +
+  theme(plot.caption = element_text(family = "Atma", size = 20, color = "gray"),
+        plot.background = element_rect(fill = "transparent"),
+        panel.background = element_rect(fill = "transparent"))
+```
+
+]
+
+
+
+
+
+&lt;/div&gt;
+
+
+
+
+---
+
+class: transition
+
+.center[
+.clapper[
+.clapper-top[
+]
+.clapper-bottom[
+]]]
+
+# .gray[Act I]
+
+# Software Design
+
+---
+
+
+class: transition bg-rladies
+
+## &lt;i class="fas fa-surprise"&gt;&lt;/i&gt; &lt;i class="fas fa-smile-wink"&gt;&lt;/i&gt; &lt;i class="fas fa-smile-beam"&gt;&lt;/i&gt; &lt;i class="fas fa-sad-tear"&gt;&lt;/i&gt; &lt;i class="fas fa-sad-cry"&gt;&lt;/i&gt; &lt;i class="fas fa-meh-rolling-eyes"&gt;&lt;/i&gt; &lt;i class="fas fa-meh-blank"&gt;&lt;/i&gt; &lt;i class="fas fa-meh"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-wink"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-stars"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-squint-tears"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-squint"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-hearts"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-beam"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-alt"&gt;&lt;/i&gt; &lt;i class="fas fa-grin"&gt;&lt;/i&gt; &lt;i class="fas fa-tired"&gt;&lt;/i&gt; &lt;i class="fas fa-smile"&gt;&lt;/i&gt;
+
+&lt;br&gt;
+
+# Drawing faces under different .yellow[programming paradigms]
+
+&lt;br&gt;
+
+##  &lt;i class="fas fa-laugh-wink"&gt;&lt;/i&gt; &lt;i class="fas fa-laugh-squint"&gt;&lt;/i&gt; &lt;i class="fas fa-laugh-beam"&gt;&lt;/i&gt; &lt;i class="fas fa-laugh"&gt;&lt;/i&gt; &lt;i class="fas fa-kiss-wink-heart"&gt;&lt;/i&gt; &lt;i class="fas fa-kiss-beam"&gt;&lt;/i&gt; &lt;i class="fas fa-kiss"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-tongue-wink"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-tongue-squint"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-tongue"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-tears"&gt;&lt;/i&gt; &lt;i class="fas fa-grin-beam-sweat"&gt;&lt;/i&gt; &lt;i class="fas fa-grimace"&gt;&lt;/i&gt; &lt;i class="fas fa-frown-open"&gt;&lt;/i&gt; &lt;i class="fas fa-frown"&gt;&lt;/i&gt; &lt;i class="fas fa-flushed"&gt;&lt;/i&gt; &lt;i class="fas fa-angry"&gt;&lt;/i&gt; &lt;i class="fas fa-dizzy"&gt;&lt;/i&gt;
+
+---
+
+
+# Drawing a .yellow[happy] face .circle[1]
+
+???
+
+* To illustrate the different programming paradigms, I'm going to show different ways to design the software to draw faces
+
+---
+
+count: false
+
+# Drawing a .yellow[happy] face .circle[1]
+
+.flex[
+.w-50[
+.f4[
+
+```r
+library(grid)
+# face shape
+grid.circle(x = 0.5, y = 0.5, r = 0.5)
+```
+]
+]
+.w-50[
+.f4[
+
+&lt;br&gt;
+
+&lt;img src="images/happy-1-1.png" width="432" style="display: block; margin: auto;" /&gt;
+]
+
+]
+
+]
+
+---
+
+count: false
+
+# Drawing a .yellow[happy] face .circle[1]
+
+.flex[
+.w-50[
+.f4[
+
+```r
+library(grid)
+# face shape
+grid.circle(x = 0.5, y = 0.5, r = 0.5)
+
+# eyes
+grid.circle(x = c(0.35, 0.65),
+            y = c(0.6, 0.6),
+            r = 0.05,
+            gp = gpar(fill = "black"))
+```
+]
+]
+.w-50[
+.f4[
+
+&lt;br&gt;
+
+&lt;img src="images/happy-2-1.png" width="432" style="display: block; margin: auto;" /&gt;
+]
+
+]
+
+]
+
+---
+
+count: false
+
+
+# Drawing a .yellow[happy] face .circle[1]
+
+.flex[
+.w-50[
+.f4[
+
+```r
+library(grid)
+# face shape
+grid.circle(x = 0.5, y = 0.5, r = 0.5)
+
+# eyes
+grid.circle(x = c(0.35, 0.65),
+            y = c(0.6, 0.6),
+            r = 0.05,
+            gp = gpar(fill = "black"))
+
+# mouth
+grid.curve(x1 = 0.4, y1 = 0.4,
+           x2 = 0.6, y2 = 0.4,
+           square = FALSE)
+```
+]
+]
+.w-50[
+.f4[
+
+&lt;br&gt;
+
+&lt;img src="images/happy-3-1.png" width="432" style="display: block; margin: auto;" /&gt;
+]
+
+]
+
+]
+
+---
+
+# Drawing a .rladies-gray[sad] face .circle[1]
+
+???
+
+* Switch to drawing a sad face
+
+---
+
+count: false
+
+# Drawing a .rladies-gray[sad] face .circle[1]
+
+.flex[
+.w-50[
+.f4[
+
+```r
+library(grid)
+# face shape
+grid.circle(x = 0.5, y = 0.5, r = 0.5)
+
+# eyes
+grid.circle(x = c(0.35, 0.65),
+            y = c(0.6, 0.6),
+            r = 0.05,
+            gp = gpar(fill = "black"))
+
+# mouth
+grid.curve(x1 = 0.4, y1 = 0.4,
+           x2 = 0.6, y2 = 0.4,
+           square = FALSE,
+*          curvature = -1)
+```
+]
+]
+.w-50[
+.f4[
+
+&lt;br&gt;
+.animated.delay-1s.zoomIn[
+&lt;img src="images/sad-1-1.png" width="432" style="display: block; margin: auto;" /&gt;
+]
+]
+]
+
+]
+
+
+---
+
+name: imperative
+
+# Drawing faces .circle[1] .yellow[*Imperative programming*] style
+
+.flex[
+.w-50.pr3[
+.f4[
+
+```r
+library(grid)
+grid.circle(x = 0.5, y = 0.5, r = 0.5)
+grid.circle(x = c(0.35, 0.65),
+            y = c(0.6, 0.6),
+            r = 0.05,
+            gp = gpar(fill = "black"))
+grid.curve(x1 = 0.4, y1 = 0.4,
+           x2 = 0.6, y2 = 0.4,
+           square = FALSE)
+```
+.animated.flash[
+&lt;img src="images/happy-1.png" width="151.2" style="display: block; margin: auto;" /&gt;
+]]
+]
+.w-50[
+.f4[
+
+```r
+grid.circle(x = 0.5, y = 0.5, r = 0.5)
+grid.circle(x = c(0.35, 0.66),
+            y = c(0.6, 0.6),
+            r = 0.05,
+            gp = gpar(fill = "black"))
+grid.curve(x1 = 0.4, y1 = 0.4,
+           x2 = 0.6, y2 = 0.4,
+           square = FALSE,
+           curvature = -1)
+```
+.animated.flash[
+&lt;img src="images/sad-1.png" width="151.2" style="display: block; margin: auto;" /&gt;
+]]
+
+]
+
+]
+
+--
+
+.absolute.left-3.bottom-0[
+.info-box.w-70[
+**Imperative programming** is a programming paradigm that uses statements to change a program's state.
+.fr[&amp;mdash;Wikipedia]
+
+&lt;br&gt; Think of this as _**"instructions meant for the computer"**_
+
+]]
+
+---
+
+
+# Drawing faces .circle[2] .yellow[*Functional programming*] style
+
+.flex[
+.w-60.h-100.pr3[
+
+```r
+face1 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE)
+}
+
+face2 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE,
+                   curvature = -1)
+}
+```
+
+]
+.w-40[
+.info-box[
+**Functional programming** is a declarative programming paradigm where programs are constructed by applying and composing functions.
+.fr[&amp;mdash;Wikipedia]
+]
+
+
+]
+]
+
+
+???
+
+* Wrap the previous imperative commands as a function
+
+
+---
+
+count: false
+
+# Drawing faces .circle[2] .yellow[*Functional programming*] style
+
+.flex[
+.w-60.h-100.pr3[
+
+```r
+face1 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE)
+}
+
+face2 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE,
+                   curvature = -1)
+}
+```
+
+]
+.w-40[
+.info-box[
+**Functional programming** is a declarative programming paradigm where programs are constructed by applying and composing functions.
+.fr[&amp;mdash;Wikipedia]
+]
+.flex[
+.w-50.pr2[
+
+```r
+face1()
+```
+
+&lt;img src="images/happy-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+
+]
+.w-50[
+
+]
+
+]
+]
+]
+
+---
+
+count: false
+
+# Drawing faces .circle[2] .yellow[*Functional programming*] style
+
+.flex[
+.w-60.h-100.pr3[
+
+```r
+face1 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE)
+}
+
+face2 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE,
+                   curvature = -1)
+}
+```
+
+]
+.w-40[
+.info-box[
+**Functional programming** is a declarative programming paradigm where programs are constructed by applying and composing functions.
+.fr[&amp;mdash;Wikipedia]
+]
+.flex[
+.w-50.pr2[
+
+```r
+face1()
+```
+
+&lt;img src="images/happy-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+
+]
+.w-50[
+
+```r
+face2()
+```
+
+&lt;img src="images/sad-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+
+]
+]
+]
+]
+
+---
+
+count: false
+
+# Drawing faces .circle[2] .yellow[*Functional programming*] style
+
+.flex[
+.w-60.h-100.pr3[
+
+```r
+face1 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE)
+}
+
+face2 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE,
+                   curvature = -1)
+}
+```
+
+]
+.w-40[
+.info-box[
+**Functional programming** is a declarative programming paradigm where programs are constructed by applying and composing functions.
+.fr[&amp;mdash;Wikipedia]
+]
+.flex[
+.w-50.pr2[
+
+```r
+face1()
+```
+
+&lt;img src="images/happy-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+
+```r
+face1()
+```
+
+&lt;img src="images/happy-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+
+]
+.w-50[
+
+```r
+face2()
+```
+
+&lt;img src="images/sad-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+]
+]
+]
+]
+
+???
+
+* I can repeatedly call the function
+* Drawing happy or sad faces are easier now
+
+
+---
+
+count: false
+name: functional
+
+# Drawing faces .circle[2] .yellow[*Functional programming*] style
+
+.flex[
+.w-60.h-100.pr3[
+
+```r
+face1 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE)
+}
+
+face2 &lt;- function() {
+  grid::grid.circle(x = 0.5, y = 0.5, r = 0.5)
+  grid::grid.circle(x = c(0.35, 0.65),
+                    y = c(0.6, 0.6),
+                    r = 0.05,
+                    gp = gpar(fill = "black"))
+  grid::grid.curve(x1 = 0.4, y1 = 0.4,
+                   x2 = 0.6, y2 = 0.4,
+                   square = FALSE,
+                   curvature = -1)
+}
+```
+
+]
+.w-40[
+.info-box[
+**Functional programming** is a declarative programming paradigm where programs are constructed by applying and composing functions.
+.fr[&amp;mdash;Wikipedia]
+]
+.flex[
+.w-50.pr2[
+
+```r
+face1()
+```
+
+&lt;img src="images/happy-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+
+```r
+face1()
+```
+
+&lt;img src="images/happy-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+
+]
+.w-50[
+
+```r
+face2()
+```
+
+&lt;img src="images/sad-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+
+```r
+face1()
+```
+
+&lt;img src="images/happy-fn-1.png" width="68.4" style="display: block; margin: auto;" /&gt;
+]
+
+]
+
+
+
+]
+]
+
+
+
+---
+
+
+# Drawing faces .circle[3] Human-centered design
+
+.f1[
+&lt;i class="fas fa-lightbulb"&gt;&lt;/i&gt; Computational systems are adapted for human use
+]
+
+.flex[
+.w-50[
+
+.w-90[
+
+.info-box.w-90[
+**Syntactic sugar** means using function name or syntax in a programming language that is designed to make things **_easier to read or to express for humans_**.
+]
+]
+]
+.w-50[
+
+]
+
+]
+
+---
+
+count: false
+
+# Drawing faces .circle[3] Human-centered design
+
+.f1[
+&lt;i class="fas fa-lightbulb"&gt;&lt;/i&gt; Computational systems are adapted for human use.
+]
+
+.flex[
+.w-50[
+
+.w-90[
+
+.info-box.w-90[
+**Syntactic sugar** means using function name or syntax in a programming language that is designed to make things **_easier to read or to express for humans_**.
+]
+]
+]
+.w-50[
+.flex[
+.w-33.pr2[
+
+```r
+face1()
+```
+
+&lt;img src="images/happy-fn-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]
+.w-33.pr2[
+
+```r
+face2()
+```
+
+&lt;img src="images/sad-fn-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]
+.w-33.pr2[
+```r
+face3()
+```
+.center.f-headline[
+?
+
+]
+]
+]
+]
+
+]
+
+
+---
+
+count: false
+
+
+# Drawing faces .circle[3] Human-centered design
+
+.f1[
+&lt;i class="fas fa-lightbulb"&gt;&lt;/i&gt; Computational systems are adapted for human use
+]
+
+.flex[
+.w-50[
+
+.w-90[
+
+.info-box.w-90[
+**Syntactic sugar** means using function name or syntax in a programming language that is designed to make things **_easier to read or to express for humans_**.
+]
+]
+]
+.w-50[
+.flex[
+.w-33.pr2[
+
+```r
+face1()
+```
+
+&lt;img src="images/happy-fn-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]
+.w-33.pr2[
+
+```r
+face2()
+```
+
+&lt;img src="images/sad-fn-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]
+.w-33.pr2[
+```r
+face3()
+```
+.center.f-headline[
+?
+]
+]
+]
+
+&lt;br&gt;
+
+
+Alternative function names:
+
+.flex[
+.w-33.pr2[
+```r
+face_happy()
+```
+]
+.w-33.pr2[
+```r
+face_sad()
+```
+
+]
+.w-33.pr2[
+```r
+face_angry()
+```
+
+]
+]
+]
+
+]
+
+---
+
+
+class: center middle
+
+.f1[What if you want to draw a surprised face? 😮]
+
+--
+
+.f1[Or a face with eyebrows? 😲]
+
+--
+
+.f1[Or with googly eyes? 😳]
+
+--
+
+&lt;br&gt;
+
+.f1[**_You can't_** without writing a whole new function that describes the entire face from scratch.]
+
+---
+
+class: bg-rladies animated slideInLeft middle white center
+
+&lt;i class="fab fa-github"&gt;&lt;/i&gt; .rladies-gray[https://github.com/emitanaka/portrait]
+
+&lt;i class="fas fa-box-open"&gt;&lt;/i&gt; `remotes::install_github("emitanaka/portrait")`
+.f-headline[
+`library(portrait)`
+]
+
+
+.f2[We'll use the above package to draw faces.]
+
+Note: the above package was made for only demonstration purpose for this talk.
+
+
+---
+
+
+# Drawing faces .circle[4] Rethinking function arguments as facial parts
+--
+
+.flex[
+.w-50[
+
+* Let's **_reframe_** how we think
+* A face is made up of:
+  * eyes
+  * mouth
+  * shape
+
+
+]
+.w-50[
+{{content}}
+
+]
+
+]
+
+
+--
+
+
+
+* We can consider a design like below instead:
+
+
+```r
+library(portrait)
+face(eyes = "googly",
+     mouth = "smile",
+     shape = "round")
+```
+
+&lt;img src="images/face-googly-1.png" width="216" style="display: block; margin: auto;" /&gt;
+{{content}}
+
+--
+
+&lt;br&gt;
+
+
+* But what about hair and nose?
+
+
+
+
+---
+
+count: false
+
+
+# Drawing faces .circle[4] Rethinking function arguments as facial parts
+
+
+.flex[
+.w-50[
+
+* Let's **_reframe_** how we think
+* A face is made up of:
+  * eyes
+  * mouth
+  * shape
+  * **hair** &lt;i class="fas fa-hand-point-left"&gt;&lt;/i&gt;
+  * **nose** &lt;i class="fas fa-hand-point-left"&gt;&lt;/i&gt;
+
+
+]
+.w-50[
+* Adding more arguments:
+
+
+```r
+library(portrait)
+face(eyes = "googly",
+     mouth = "smile",
+     shape = "round",
+*    hair = "mohawk",
+*    nose = "simple")
+```
+
+&lt;img src="images/face-googly-2-1.png" width="216" style="display: block; margin: auto;" /&gt;
+{{content}}
+
+
+]
+
+]
+
+
+
+
+
+
+---
+
+class: middle center
+
+
+.f1[But what about if I want to add a beard 🧔‍♂️, &lt;br&gt; an accessory 🤠, &lt;br&gt;eye brows 🤨, ...?]
+
+&lt;br&gt;
+
+.f1[You are **_reliant on the developer(s)_** to add the argument and/or functionality for you.]
+
+---
+
+layout: true
+
+# Drawing faces .circle[5] .yellow[*Object-oriented programming*] style
+
+.info-box.w-70[
+**Object-oriented programming** (OOP) is a programming paradigm based on objects that have certain attributes and behaviours
+]
+
+* Rethink everything as an **_object_**
+
+---
+
+---
+
+.flex.h-100[
+.w-30.pr3[
+
+```r
+library(portrait)
+*f &lt;- face()
+
+str(f)
+```
+
+```
+## Portrait contains:
+## - shape
+## - eyes
+## - mouth
+```
+
+]
+.w-30.pr3[
+.output-box.w-100[
+
+```r
+print(f)
+```
+
+&lt;img src="images/face1-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]]
+.w-40[
+.summary-box.w-100[
+* Function creates an object that contains a "standard" smiley face
+* Only draws the face upon print
+]
+]
+]
+
+---
+
+.flex.h-100[
+.w-30.pr3[
+
+```r
+library(portrait)
+f &lt;- face() +
+* cat_shape()
+
+str(f)
+```
+
+```
+## Portrait contains:
+## - shape
+## - eyes
+## - mouth
+```
+
+]
+.w-30.pr3[
+.output-box.w-100[
+
+```r
+print(f)
+```
+
+&lt;img src="images/face2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]]
+.w-40[
+.summary-box.w-100[
+* .black[`cat_shape`] function modifies the shape information within the object
+]
+]
+]
+
+---
+
+
+.flex.h-100[
+.w-30.pr3[
+
+```r
+library(portrait)
+f &lt;- face() +
+  cat_shape() +
+* cat_eyes()
+
+str(f)
+```
+
+```
+## Portrait contains:
+## - shape
+## - eyes
+## - mouth
+```
+
+
+
+
+]
+.w-30.pr3[
+.output-box.w-100[
+
+```r
+print(f)
+```
+
+&lt;img src="images/face3-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]]
+.w-40[
+.summary-box.w-100[
+* .black[`cat_eyes`] function modifies the eye information within the object
+]
+]
+]
+
+---
+
+
+.flex.h-100[
+.w-30.pr3[
+
+```r
+library(portrait)
+f &lt;- face() +
+  cat_shape() +
+  cat_eyes() +
+* cat_nose()
+
+str(f)
+```
+
+```
+## Portrait contains:
+## - shape
+## - eyes
+## - mouth
+## - nose
+```
+
+
+
+
+]
+.w-30.pr3[
+.output-box.w-100[
+
+```r
+print(f)
+```
+
+&lt;img src="images/face4-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]]
+.w-40[
+.summary-box.w-100[
+* .black[`cat_nose`] function adds nose information
+]
+]]
+
+
+---
+
+
+.flex.h-100[
+.w-30.pr3[
+
+```r
+library(portrait)
+f &lt;- face() +
+  cat_shape() +
+  cat_eyes() +
+  cat_nose() +
+* cat_whiskers()
+
+str(f)
+```
+
+```
+## Portrait contains:
+## - shape
+## - eyes
+## - mouth
+## - nose
+## - whiskers
+```
+
+
+
+]
+.w-30.pr3[
+.output-box.w-100[
+
+```r
+print(f)
+```
+
+&lt;img src="images/face5-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]
+]
+.w-40[
+.summary-box.w-100[
+* .black[`cat_whiskers`] function adds whiskers information
+]
+
+]
+]
+
+---
+
+
+.flex.h-100[
+.w-30.pr3[
+
+```r
+library(portrait)
+f &lt;- face() +
+* dog_shape() +
+* cat_eyes(fill = "red") +
+  cat_nose() +
+  cat_whiskers()
+
+str(f)
+```
+
+```
+## Portrait contains:
+## - shape
+## - eyes
+## - mouth
+## - nose
+## - whiskers
+```
+
+
+
+]
+.w-30.pr3[
+.output-box.w-100[
+
+```r
+print(f)
+```
+
+&lt;img src="images/face6-1.png" width="144" style="display: block; margin: auto;" /&gt;
+]
+]
+.w-40[
+.summary-box.w-100[
+* Mix-and-match functions to make other faces
+* The functions are modular so can be replaced by user's own functions
+]
+
+]
+]
+
+---
+
+layout: false
+class: bg-rladies center middle rladies-gray
+
+
+.f1[Recipe functions &lt;i class="fas fa-long-arrow-alt-right"&gt;&lt;/i&gt;&lt;br&gt; One function to draw one complete face]
+
+&lt;br&gt;
+--
+
+.f1[A function with multiple arguments &lt;i class="fas fa-long-arrow-alt-right"&gt;&lt;/i&gt; &lt;br&gt;One function to draw multiple complete faces]
+
+&lt;br&gt;
+&lt;br&gt;
+
+--
+
+
+.animated.slideInLeft[
+# .f1[Finite number of functions to draw&lt;br&gt; _infinite_ possible _incomplete_ and complete faces]
+
+]
+
+
+---
+
+
+class: transition
+
+.center[
+.clapper[
+.clapper-top[
+]
+.clapper-bottom[
+]]]
+
+# .gray[Act II]
+
+# Experimental Design
+
+
+---
+
+
+# .f1[&lt;i class="fas fa-book"&gt;&lt;/i&gt; Classical "named" experimental designs]
+
+
+.square-box[A] Completely Randomised Design
+
+.square-box[B] Randomised Complete Block Design
+
+.square-box[C] Latin Square Design
+
+.square-box[D] Balanced Incomplete Block Design
+
+.square-box[E] Factorial Design
+
+.square-box[F] Split-plot Design {{content}}
+
+--
+
+&lt;span class="shake animated infinite slow" style="display:inline-block;position:relative;"&gt;&lt;i class="fas fa-arrow-circle-left f1 bounceInRight animated rladies-purple-dark" style=" vertical-align: middle;"&gt;&lt;/i&gt;&lt;/span&gt;
+
+
+
+
+---
+
+background-color: #e3e3e3
+
+
+# Classical split-plot design
+
+.context-box[
+Study of **two irrigation methods** and **two fertilizer brands** on the yields of a crop.
+]
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;img src='images/split1.png' alt="Figure shows four rectangles that respresent the wholeplots"&gt;
+&lt;/center&gt;
+
+
+
+???
+
+To begin with let's have a look at this classical split-plot design.
+The context of this experiment is that it's a study on the yields of a crop with two irrigation methods, either irrigated or rain-fed, and two fertilizer brands.
+
+So in order to conduct this study, the experimental resources that is available to us is this land where there are four fields, which I'm going to referring to these as the wholeplot.
+
+---
+
+background-color: #e3e3e3
+count: false
+
+# Classical split-plot design
+
+.context-box[
+Study of **two irrigation methods** and **two fertilizer brands** on the yields of a crop.
+]
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;img src='images/split2.png' alt="The outer two wholeplots have received irrigation while the middle two wholeplots is rain-fed."&gt;
+&lt;/center&gt;
+
+
+
+???
+
+Now for the irrigation method, we have a restriction such that only one irrigation method can be applied per wholeplot. So what you see here, where we got the irrigated wholeplots on the edges and the rainfed wholeplots in the middle, is just one possible randomisation of the irrigation method on the whole plots.
+
+---
+
+background-color: #e3e3e3
+count: false
+
+# Classical split-plot design
+
+.context-box[
+Study of **two irrigation methods** and **two fertilizer brands** on the yields of a crop.
+]
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;img src='images/split3.png' alt="the wholeplots are split into two with 8 subplots in total"&gt;
+&lt;/center&gt;
+
+
+
+???
+
+Then what we do next is to split the wholeplot into two subplots, which means that we have 8 subplots in total.
+
+---
+
+count: false
+background-color: #e3e3e3
+
+# Classical split-plot design
+
+.context-box[
+Study of **two irrigation methods** and **two fertilizer brands** on the yields of a crop.
+]
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;img src='images/split4.png' alt="The first subplot receives fertilizer brand A, second subplot receives fertilizer brand B, third one is B, fourth one is A, fifth one is B, sixth one is A, seventh one is B and last one is A."&gt;
+&lt;/center&gt;
+
+
+
+???
+
+Now the fertilizer can be applied to each subplots independently. We don't want to confound the fertilizer brands to the wholeplot, so for each wholeplot, we randomly apply one fertilizer brand to one subplot and the the remaining subplot receives the other fertilizer brand. What you see here is one possible restricted randomisation of fertilizer onto subplot.
+
+---
+
+background-color: #e3e3e3
+count: false
+
+# Classical split-plot design
+
+.context-box[
+Study of **two irrigation methods** and **two fertilizer brands** on the yields of a crop.
+]
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;img src='images/split5.png' alt="shows the final split plot with randomisation combined from the ones described before"&gt;
+&lt;/center&gt;
+
+
+???
+
+Putting together the two randomisation results, here we have our classical split plot design.
+
+
+---
+
+class: transition bg-rladies
+
+
+
+.lh-solid[
+# .f-subheadline[CRAN Task View of &lt;Br&gt;Design of Experiments&lt;br&gt;] .f1[&amp; Analysis of Experimental Data]
+]
+
+
+
+
+contains
+
+# 📦 .yellow[109 R-packages ]
+
+
+.f5[based on the .yellow[`ctv`] package version 0.8.5]
+
+--
+
+
+
+.f1[of which `agricolae` package is &lt;br&gt;one of the most popular]
+
+
+---
+
+
+# `agricolae::design.split()`
+
+**Split-plot design** for `\(t = 2 \times 4\)` treatments with `\(2\)` replication for each treatment
+
+&lt;pre&gt;&lt;code&gt;
+trt1 &lt;- c("I", "R")
+trt2 &lt;- c("A", "B")
+agricolae::.bg-yellow[design.split](trt1 = trt1, trt2 = trt2, r = 2, design = "crd")
+&lt;/code&gt;&lt;/pre&gt;
+
+.overflow-scroll.h-60[
+
+```
+## $parameters
+## $parameters$design
+## [1] "split"
+## 
+## $parameters[[2]]
+## [1] TRUE
+## 
+## $parameters$trt1
+## [1] "I" "R"
+## 
+## $parameters$applied
+## [1] "crd"
+## 
+## $parameters$r
+## [1] 2 2
+## 
+## $parameters$serie
+## [1] 2
+## 
+## $parameters$seed
+## [1] -1855265822
+## 
+## $parameters$kinds
+## [1] "Super-Duper"
+## 
+## 
+## $book
+##   plots splots r trt1 trt2
+## 1   101      1 1    I    A
+## 2   101      2 1    I    B
+## 3   102      1 1    R    A
+## 4   102      2 1    R    B
+## 5   103      1 2    I    A
+## 6   103      2 2    I    B
+## 7   104      1 2    R    A
+## 8   104      2 2    R    B
+```
+]
+
+
+
+
+&lt;div class="plot-box" style="position:absolute;top: 300px; right: 200px;"&gt;
+
+
+&lt;img src="images/split-plot-graph-1.png" width="300px"&gt;
+
+&lt;/div&gt;
+
+---
+
+class: middle
+
+
+
+.f1[Common .rladies-purple-dark[**software design**] for computational systems for constructing experimental design:]
+
+.f2[
+{{content}}
+]
+
+--
+
+* Functions construct the experimental design from **_zero to its entirety_**
+  * In another words, you can't have an intermediate construct of an experimental design
+{{content}}
+
+--
+
+* Experimental units, observational units, blocks and allocation of treatment to units are often **_implicitly_ defined**
+{{content}}
+
+
+--
+
+* The intention of what responses to record are **_not explicitly_ specified**
+
+
+
+---
+
+class: transition
+
+
+# Let's _reframe_ how we think
+
+--
+
+but first some terminology so we're on the same page
+
+
+---
+
+# A basic comparative experiment
+
+.w-75[
+* There are three components that are *necessary* to run a comparative experiment:
+  * a set of `\(\color{gray}{n}\)` **experimental units** `\((\Omega)\)`
+  * a set of `\(\color{gray}{t}\)` **treatments** `\((\mathcal{T})\)`
+  * **allocation** of treatments to experimental units `\((D: \Omega \rightarrow \mathcal{T})\)` &lt;br&gt;or design matrix `\((\mathbf{X}_{n\times t})\)`
+* And decide on **observational units** `\((\Omega_o)\)` which may or may not be the same as `\(\Omega\)`
+{{content}}
+]
+
+--
+
+* For the analysis of experimental, you additionally require:
+  * the **record of responses** `\((\boldsymbol{Y})\)` on observational units
+
+---
+
+name: terms
+
+# Terminology .f3.gray[modified versions of Bailey (2008)]
+
+.flex[
+.w-60.pr3[
+.info-box.f3[
+**Experimental unit** `\((\Omega)\)` is the smallest unit that the treatment can be independently applied to.
+]
+.info-box.f3[
+**Observational unit** `\((\Omega_o)\)` is the smallest unit in which the response will be measured on. Not to be confused with observations  `\(\boldsymbol{Y}\)`.
+]
+.info-box.f3[
+**Block**, also called **cluster**, is the unit that group some other units (e.g. experimental units) such that the units within the same block (cluster) are more alike (homogeneous).
+]
+]
+.w-40[
+.info-box.f3[
+A **treatment** `\((\mathcal{T})\)` is the entire description of what can be applied to an experimental unit.
+]
+
+.info-box.f3[
+A **design** `\((D: \Omega \rightarrow \mathcal{T})\)` is the allocation of treatments to units.
+]
+
+.info-box.f3[
+A **plan** or **layout** is the design translated into actual units; randomisation is usually involved in the process.
+]
+]]
+
+
+
+
+
+.absolute.top-0.right-1[
+[&lt;i class="fas fa-caret-right"&gt;&lt;/i&gt;](#edibble)
+]
+
+
+.footnote[
+Bailey, R. (2008). Design of Comparative Experiments (Cambridge Series in Statistical and Probabilistic Mathematics). Cambridge: Cambridge University Press. doi:10.1017/CBO9780511611483
+]
+
+
+
+---
+
+# Experimental Structures .f3.gray[as defined by Bailey (2008)]
+
+.flex[
+.w-50[
+.info-box.f3[
+**Unit structure** means meaningful ways of dividing up `\(\Omega\)` and `\(\Omega_o\)`.
+
+For example:
+* **Unstructured**
+* **Blocking**
+]
+]
+.w-50.pl3[
+.info-box.f3[
+ **Treatment Structure** means meaningful ways of dividing up `\(\mathcal{T}\)`.
+
+For example:
+* **Unstructured**: no grouping within `\(\mathcal{T}\)`
+* **Factorial**: all combinations of at least two factors
+* **Factorial + control**
+]
+
+
+]]
+
+
+.footnote[
+Bailey, R. (2008). Design of Comparative Experiments (Cambridge Series in Statistical and Probabilistic Mathematics). Cambridge: Cambridge University Press. doi:10.1017/CBO9780511611483
+]
+
+
+---
+
+background-image: url("images/art-03.png")
+background-size: 100% 100%
+class: middle center
+
+
+.animated.slideInLeft.f-headline[
+**The Grammar of**]  
+.animated.slideInRight.f-headline[
+.rladies-purple-dark[**Experimental Designs**]]
+
+
+.r-button[
+&lt;i class="fab fa-r-project"&gt;&lt;/i&gt;
+]
+.r-code.tl[
+
+```r
+library(tidyverse)
+library(mathart)
+set.seed(2021)
+df3 &lt;- map_dfr(1:100, ~lissajous(a = runif(1, 0, 10), A = runif(1, 0, 1)), .id = "id")
+ggplot(df3, aes(x, y)) +
+  geom_path(color = "#027EB6", size = 0.25, lineend = "round", alpha = 0.07) +
+  facet_wrap(~id, nrow = 8) +
+  coord_equal() +
+  labs(caption = "Lissajous curves") +
+  theme_blankcanvas(margin_cm = 1) +
+  theme(plot.caption = element_text(family = "Atma", size = 20, color = "gray"))
+```
+
+]
+
+---
+
+class: transition
+
+# Context is key in &lt;br&gt;experimental design
+
+
+.flex[
+.w-33[
+&lt;img src="images/domain-expert-1.png" width="144" style="display: block; margin: auto;" /&gt;
+Domain expert
+]
+.w-33[
+&lt;img src="images/statistican-1.png" width="144" style="display: block; margin: auto;" /&gt;
+Statistician
+]
+.w-33[
+&lt;img src="images/technician-1.png" width="144" style="display: block; margin: auto;" /&gt;
+Technician
+]
+]
+
+--
+
+&lt;br&gt;
+
+.f1[
+A successful experiment is a result of collaboration between these "actors".]
+
+
+---
+
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+```r
+library(edibble)
+start_design("Wood water resistance")
+```
+
+]
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6[
+
+```
+## Wood water resistance
+```
+
+]
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Domain expert
+]
+
+&lt;blockquote&gt;
+"I want to run an experiment to study the water resistance property of wood"
+&lt;/blockquote&gt;
+
+
+
+
+
+]
+
+]
+
+---
+
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+
+```r
+library(edibble)
+start_design("Wood water resistance") %&gt;%
+  set_units(board = 10,
+            panel = nested_in(board, 4))
+```
+
+]
+
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6.w-100[
+
+```
+## Wood water resistance
+## └─board (10 levels)
+##   └─panel (40 levels)
+```
+
+]
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Domain expert
+]
+
+&lt;blockquote&gt;
+"I have 10 boards that I can divide each into 4 small wood panels"
+&lt;/blockquote&gt;
+
+
+
+
+
+]
+
+]
+
+---
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+```r
+library(edibble)
+start_design("Wood water resistance") %&gt;%
+  set_units(board = 10,
+            panel = nested_in(board, 4)) %&gt;%
+  set_trts(pretreatment = c("copper", "linseed"),
+           stain = 4)
+```
+
+]
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6.w-100[
+
+```
+## Wood water resistance
+## ├─board (10 levels)
+## │ └─panel (40 levels)
+## ├─pretreatment (2 levels)
+## └─stain (4 levels)
+```
+
+]
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Domain expert
+]
+
+&lt;blockquote&gt;
+"I want to test linseed oil and copper azole preservative as wood pretreatments and four types of stain."
+&lt;/blockquote&gt;
+
+
+
+
+]
+
+]
+
+---
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+```r
+library(edibble)
+start_design("Wood water resistance") %&gt;%
+  set_units(board = 10,
+            panel = nested_in(board, 4)) %&gt;%
+  set_trts(pretreatment = c("copper", "linseed"),
+           stain = 4) %&gt;%
+  allocate_trts(pretreatment:stain ~ panel)
+```
+
+]
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6.w-100[
+
+```
+## Wood water resistance
+## ├─board (10 levels)
+## │ └─panel (40 levels)
+## ├─pretreatment (2 levels)
+## └─stain (4 levels)
+```
+
+]
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Domain expert
+]
+
+&lt;blockquote&gt;
+"The combination of the the treatment factors should be applied on each wood panel."
+&lt;/blockquote&gt;
+
+
+
+
+]
+]
+
+
+---
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+```r
+library(edibble)
+start_design("Wood water resistance") %&gt;%
+  set_units(board = 10,
+            panel = nested_in(board, 4)) %&gt;%
+  set_trts(pretreatment = c("copper", "linseed"),
+           stain = 4) %&gt;%
+  allocate_trts(pretreatment:stain ~ panel)
+```
+
+]
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6.w-100[
+
+```
+## Wood water resistance
+## ├─board (10 levels)
+## │ └─panel (40 levels)
+## ├─pretreatment (2 levels)
+## └─stain (4 levels)
+```
+
+]
+
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Domain expert
+]
+
+&lt;blockquote&gt;
+"Oh wait, it's hard to apply pretreatment to small wood panels. We can only apply it to the board."
+&lt;/blockquote&gt;
+
+
+
+
+]
+
+]
+
+
+
+---
+
+count: false
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+```r
+library(edibble)
+start_design("Wood water resistance") %&gt;%
+  set_units(board = 10,
+            panel = nested_in(board, 4)) %&gt;%
+  set_trts(pretreatment = c("copper", "linseed"),
+           stain = 4) %&gt;%
+  allocate_trts(pretreatment ~ board,
+                       stain ~ panel)
+```
+
+]
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6.w-100[
+
+```
+## Wood water resistance
+## ├─board (10 levels)
+## │ └─panel (40 levels)
+## ├─pretreatment (2 levels)
+## └─stain (4 levels)
+```
+
+]
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Domain expert
+]
+
+&lt;blockquote&gt;
+"Oh wait, it's hard to apply pretreatment to small wood panels. We can only apply it to the board. The stain can be applied independently to wood panels."
+&lt;/blockquote&gt;
+
+
+
+]
+
+]
+
+---
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+```r
+library(edibble)
+set.seed(2021)
+start_design("Wood water resistance") %&gt;%
+  set_units(board = 10,
+            panel = nested_in(board, 4)) %&gt;%
+  set_trts(pretreatment = c("copper", "linseed"),
+           stain = 4) %&gt;%
+  allocate_trts(pretreatment ~ board,
+                       stain ~ panel) %&gt;%
+  randomise_trts() %&gt;%
+  serve_table()
+```
+
+]
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6.w-100[
+
+```
+## # An edibble: 40 x 4
+##         board      panel pretreatment    stain
+##    &lt;unit(10)&gt; &lt;unit(40)&gt;     &lt;trt(2)&gt; &lt;trt(4)&gt;
+##  1     board1    panel1       copper    stain4
+##  2     board1    panel2       copper    stain3
+##  3     board1    panel3       copper    stain1
+##  4     board1    panel4       copper    stain2
+##  5     board2    panel5       linseed   stain2
+##  6     board2    panel6       linseed   stain3
+##  7     board2    panel7       linseed   stain1
+##  8     board2    panel8       linseed   stain4
+##  9     board3    panel9       copper    stain1
+## 10     board3    panel10      copper    stain3
+## # … with 30 more rows
+```
+
+]
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Domain expert
+]
+
+&lt;blockquote&gt;
+"Okay, looks good. I'll let the technician run the experiment then."
+&lt;/blockquote&gt;
+
+]
+
+]
+
+
+---
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+```r
+library(edibble)
+set.seed(2021)
+start_design("Wood water resistance") %&gt;%
+  set_units(board = 10,
+            panel = nested_in(board, 4)) %&gt;%
+  set_trts(pretreatment = c("copper", "linseed"),
+           stain = 4) %&gt;%
+  allocate_trts(pretreatment ~ board,
+                       stain ~ panel) %&gt;%
+  randomise_trts() %&gt;%
+  serve_table()
+```
+
+]
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6.w-100[
+
+```
+## # An edibble: 40 x 4
+##         board      panel pretreatment    stain
+##    &lt;unit(10)&gt; &lt;unit(40)&gt;     &lt;trt(2)&gt; &lt;trt(4)&gt;
+##  1     board1    panel1       copper    stain4
+##  2     board1    panel2       copper    stain3
+##  3     board1    panel3       copper    stain1
+##  4     board1    panel4       copper    stain2
+##  5     board2    panel5       linseed   stain2
+##  6     board2    panel6       linseed   stain3
+##  7     board2    panel7       linseed   stain1
+##  8     board2    panel8       linseed   stain4
+##  9     board3    panel9       copper    stain1
+## 10     board3    panel10      copper    stain3
+## # … with 30 more rows
+```
+
+]
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Technician
+]
+
+&lt;blockquote&gt;
+"What am I supposed to measure?"
+&lt;/blockquote&gt;
+
+
+
+
+]
+
+]
+
+---
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+```r
+library(edibble)
+set.seed(2021)
+start_design("Wood water resistance") %&gt;%
+  set_units(board = 10,
+            panel = nested_in(board, 4)) %&gt;%
+  set_trts(pretreatment = c("copper", "linseed"),
+           stain = 4) %&gt;%
+  allocate_trts(pretreatment ~ board,
+                       stain ~ panel) %&gt;%
+  randomise_trts() %&gt;%
+  set_rcrds(panel = swelling,
+            board = supplier) %&gt;%
+  serve_table()
+```
+
+]
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6.w-100[
+
+```
+## # An edibble: 40 x 6
+##         board      panel pretreatment    stain swelling supplier
+##    &lt;unit(10)&gt; &lt;unit(40)&gt;     &lt;trt(2)&gt; &lt;trt(4)&gt;   &lt;rcrd&gt;   &lt;rcrd&gt;
+##  1     board1    panel1       copper    stain4        ■        ■
+##  2     board1    panel2       copper    stain3        ■        x
+##  3     board1    panel3       copper    stain1        ■        x
+##  4     board1    panel4       copper    stain2        ■        x
+##  5     board2    panel5       linseed   stain2        ■        ■
+##  6     board2    panel6       linseed   stain3        ■        x
+##  7     board2    panel7       linseed   stain1        ■        x
+##  8     board2    panel8       linseed   stain4        ■        x
+##  9     board3    panel9       copper    stain1        ■        ■
+## 10     board3    panel10      copper    stain3        ■        x
+## # … with 30 more rows
+```
+
+]
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Domain expert
+]
+
+&lt;blockquote class="f5"&gt;
+"Oh follow &lt;a href="https://link.springer.com/article/10.1007/s00107-014-0868-7"&gt;Kubojima &amp; Yoshida (2015)&lt;/a&gt; and measure diameter swelling. Remember to record wood supplier too."
+&lt;/blockquote&gt;
+
+
+
+
+]
+
+]
+
+
+
+---
+
+# Constructing experimental designs with `edibble`
+
+.flex.h-100[
+.w-50[
+&lt;img src="images/statistician2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Statistician
+]
+
+```r
+library(edibble)
+set.seed(2021)
+des &lt;- start_design("Wood water resistance") %&gt;%
+  set_units(board = 10,
+            panel = nested_in(board, 4)) %&gt;%
+  set_trts(pretreatment = c("copper", "linseed"),
+           stain = 4) %&gt;%
+  allocate_trts(pretreatment ~ board,
+                       stain ~ panel) %&gt;%
+  randomise_trts() %&gt;%
+  set_rcrds(panel = swelling,
+            board = supplier) %&gt;%
+  expect_rcrds(swelling = to_be_numeric(with_value(between = c(0, 5)))) %&gt;%
+  serve_table()
+```
+
+]
+.w-50.pl3.pr3.monash-bg-gray10[
+.output-box.f6.w-100[
+
+```r
+export_design(des, "design.xlsx", overwrite = TRUE)
+```
+
+```
+## Loading required package: openxlsx
+```
+
+```
+## ✓ Wood water resistance has been written to 'design.xlsx'
+```
+
+]
+
+&lt;img src="images/domain-expert2-1.png" width="144" style="display: block; margin: auto;" /&gt;
+.center[
+Technician
+]
+
+&lt;blockquote&gt;
+"Okay, I'll record the swelling. The values should be between 0 and 5 for that."
+&lt;/blockquote&gt;
+
+
+
+
+]
+
+]
+
+
+---
+
+# Wood water resistance experiment
+
+.flex[
+.w-50[
+&lt;img src="images/kowalski-potcner-exampleB.png" width="500px"&gt;
+]
+.w-50[
+
+* This experiment is based on the description by Kowalski and Potcner (2003) 
+* The resulting design is a split-plot design... but we didn't need to know that to construct the experiment!
+
+]]
+
+
+.footnote[
+Kowalski and Potcner (2003) How to recognise a split-plot experiment. *Quality Progress* 60-66
+]
+
+
+---
+
+background-image: url("images/art-04.png")
+background-size: 100% 100%
+
+.r-button[
+&lt;i class="fab fa-r-project"&gt;&lt;/i&gt;
+]
+.r-code[
+
+```r
+library(tidyverse)
+library(mathart)
+set.seed(2021)
+colors &lt;- c(blue = "#027EB6", purple = "#746FB2", fuchsia = "#9651A0", 
+            ruby = "#C8008F", pink = "#ee64a4", red = "#EE0220", orange = "#D93F00", 
+            umber = "#795549", olive = "#6F7C4D", green = "#008A25")
+df4 &lt;- map_dfr(1:16, function(n) {
+  map_dfr(1:7, function(d) {
+    rose_curve(n, d) %&gt;% 
+      mutate(id = paste(n, d), color = sample(colors, 1))
+  })
+}) %&gt;% 
+  mutate(id = factor(id, levels = sample(unique(id))))
+
+ggplot(df4, aes(x, y, color = I(color))) +
+  geom_path(size = 0.35, lineend = "round", alpha = 0.07) +
+  coord_equal() +
+  facet_wrap(~id, nrow = 7) + 
+  labs(caption = "Rose curves") +
+  theme_blankcanvas(margin_cm = 1) +
+  theme(plot.caption = element_text(family = "Atma", size = 20, color = "gray"))
+```
+
+]
+
+.flex[
+.w-60.pr3[
+.summary-box.w-100[
+* The &lt;span class="red"&gt;*grammar of experimental design*&lt;/span&gt; is a (programming language agnostic) framework that functionally maps the fundamental components of the experiment to an object oriented programming system to build and modify an experimental design, i.e. &lt;i class="red"&gt;reframes construction of experimental design using software&lt;/i&gt;
+{{content}}
+]
+]
+.w-40[
+
+&lt;br&gt;&lt;br&gt;
+
+.border-box.bg-rladies.white[
+.center[
+&lt;i class="fas fa-link"&gt;&lt;/i&gt; These slides made using R powered by HTML/CSS/JS can be found at&lt;br&gt;&lt;a style="color:yellow!important" href="https://emitanaka.org/slides-RLadiesMelb2021"&gt;emitanaka.org/slides-RLadiesMelb2021&lt;/a&gt;&lt;br&gt;
+&lt;i class="fab fa-github"&gt;&lt;/i&gt; All code to reproduce this slide can be found at &lt;a style="color:yellow!important" href="https://github.com/emitanaka/slides-RLadiesMelb2021"&gt;github.com/emitanaka/slides-RLadiesMelb2021&lt;/a&gt;
+
+]]
+
+]]
+
+
+--
+
+* The &lt;span class="red"&gt;*edibble*&lt;/span&gt; R-package is an implementation of the grammar of experimental design in the R language
+&lt;center&gt;
+&lt;a href="https://github.com/emitanaka/edibble"&gt;&lt;i class="fas fa-code"&gt;&lt;/i&gt;  https://github.com/emitanaka/edibble&lt;/a&gt;
+&lt;/center&gt;
+{{content}}
+--
+
+* The approach is designed to be &lt;span class="red"&gt;*human-friendly*&lt;/span&gt; and capture natural order of thinking for specifying experimental structure and encourage steps to be &lt;i class="red"&gt;explicitly specified&lt;/i&gt;
+{{content}}
+--
+
+* The approach &lt;span class="f5"&gt;(IMO)&lt;/span&gt; also &lt;span class="red"&gt;*promotes higher order thinking about experimental design*&lt;/span&gt;
+{{content}}
+--
+
+* Finally, the grammar makes each step modular... you can &lt;span class="red"&gt;*easily extend*&lt;/span&gt; or &lt;span class="red"&gt;*mix-and-match methods*&lt;/span&gt;
+
+---
+
+class: bg-rladies-dark white
+
+**Statistical Society of Australia Victoria Branch** presents the
+
+&lt;br&gt;
+
+.center[
+# .f1[Di Cook Award]
+
+]
+
+&lt;br&gt;
+
+* Calling for submission for your statistical software product!
+* Open only to students (or recent graduates) of Victorian or Tasmanian institutes
+* Submissions close at **Fri 26th Nov 2021**
+* Winner, announced in March 2022, will win $1,000
+* Find more information at
+
+&lt;br&gt;
+
+.flex[
+.w-20[
+
+]
+.w-60.yellow.pa3[
+https://statsocaus.github.io/dicook-award/
+]
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="lib/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "magula",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'lib/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+
+.circle-number-list > ol >  li {
+  padding-bottom: 1em;
+  padding-left: 0.5em;
+  z-index: 1;
+  position: relative;
+}
+
+.circle-number-list > ol {
+  counter-reset: number;
+  list-style-type: none;
+}
+
+.circle-number-list > ol > li:before {
+  position: absolute;
+  padding-top: 0.2em;
+  padding-right: 0.2em;
+  z-index: -1;
+  height: 1.6em;
+  width: 1.6em;
+  border-radius: 50%;
+  font-weight: bold;
+  left: -2em;
+  background-color: #E6E6E6;
+  counter-increment: number;
+  content: "\a0\a0\a0"counter(number)"\a0";
+}
+
+

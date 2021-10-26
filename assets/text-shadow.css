@@ -1,0 +1,34 @@
+.shadow {
+  display: inline-block;
+  position: relative;
+  font-size: 12em; 
+  text-shadow: .03em .03em 0 gray;
+  z-index: 1;
+}
+
+.shadow:after {
+    content: attr(data-shadow);
+    position: absolute;
+    width: 800px;
+    top: .1em; left: .1em;
+    z-index: 0;
+    text-shadow: none;
+    background-image:
+      linear-gradient(
+        45deg,
+        transparent 45%,
+        red 45%,
+        red 55%,
+        transparent 0
+        );
+    background-size: .05em .05em;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    animation: shad-anim 15s linear infinite;
+}
+
+@keyframes shad-anim {
+  0% {background-position: 0 0}
+  0% {background-position: 100% -100%}
+}

@@ -1,0 +1,248 @@
+.context-box, .summary-box, .output-box {
+  border: 3px solid black;
+  background-color: white;
+  padding: 10px;
+  border-left-width: 35px;
+  font-size: 0.9em;
+  width: 60%;
+  border-radius: 5px;
+  margin-top: 20px;
+  position: relative;
+  min-height: 120px;
+  box-shadow: 5px 5px #888888;
+}
+.summary-box {
+  border-color: #EE0220!important;
+}
+.output-box {
+  border-color: #006DAE!important;
+}
+
+.context-box > p, .summary-box > p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.output-box::before, .context-box::before, .summary-box::before {
+  content: "Context";
+  font-family: 'Boogaloo', cursive;
+  transform: rotate(-90deg);
+   /* Safari */
+  -webkit-transform: rotate(-90deg);
+
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+
+  /* IE */
+  -ms-transform: rotate(-90deg);
+
+  /* Opera */
+  -o-transform: rotate(-90deg);
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: absolute;
+  left: -49px;
+  top: 40px;
+  font-size: 20px;
+}
+
+.summary-box::before {
+  content: "Main Points";
+  left: -65px;
+}
+
+.output-box::before {
+  content: "Output";
+  left: -45px;
+}
+
+.blockquote {
+  display: inline-block;
+  margin:10px auto;
+  font-family:Open Sans;
+  font-style:italic;
+  color: #555555;
+  padding: 1.2em 30px 1.2em 75px;
+  border-left: 8px solid #006DAE ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+}
+
+.blockquote::before{
+  font-family: Arial;
+  content: "\201C";
+  color: #006DAE;
+  font-size: 4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+.blockquote .cite {
+  display:block;
+  color:#333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:1em;
+}
+
+
+
+.info-box, .code-box, .idea-box, .work-box, .question-box, .think-box, .aim-box, .warn-box {
+  display: inline-block;
+  margin:10px auto;
+  background-color: white;
+  color: #555555;
+  padding: 0.3em 20px 0.3em 20px;
+  line-height:1.6;
+  position: relative;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-left-width: 60px;
+}
+.info-box::before, .code-box::before, .idea-box::before, .work-box::before, .warn-box::before, .question-box::before, .think-box::before, .aim-box::before {
+  font-family: var(--fa-style-family, "Font Awesome 6 Free");
+  color: white;
+  font-size: 1.5em;
+  font-weight: 900;
+  position: absolute;
+}
+
+.info-box { border-color: #006DAE; }
+.info-box::before{
+  content: "\f05a";
+  left: -47px;
+  top: 5px;
+}
+.code-box { border-color: #008A25; }
+.code-box::before {
+  content: "\f5fc";
+  left: -50px;
+  top: 5px;
+}
+.idea-box { border-color: #C8008F; }
+.idea-box::before {
+  content: "\f0eb";
+  left: -42px;
+  top: 5px;
+}
+.work-box { border-color: #EE0220; }
+.work-box::before {
+  content: "\f0ad";
+  left: -44px;
+  top: 5px;
+}
+.question-box { border-color: #D93F00; }
+.question-box::before{
+  content: "\f059";
+  font-size: 0.9rem;
+  left: -50px;
+  top: 5px;
+}
+.warn-box { border-color: crimson; }
+.warn-box::before{
+  content: "\f071";
+  left: -47px;
+  top: 5px;
+}
+.think-box { border-color: #ee64a4; }
+.think-box::before {
+  content: "\f4ad";
+  left: -46px;
+  top: 5px;
+}
+.aim-box { border-color: #9651A0; }
+.aim-box::before {
+  content: "\f05b";
+  left: -48px;
+  top: 5px;
+}
+
+.color-box, .border-box {
+  display: inline-block;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 15px;
+}
+
+.border-box {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+
+.circle-image-200 {
+  background: #000;
+  border-radius: 50%;
+  border: solid 3px black;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.circle-image-120 {
+  background: #000;
+  border-radius: 50%;
+  border: solid 3px black;
+  margin: auto;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+
+}
+
+.circle-image-200 p, .circle-image-120 p {
+  margin-block-start: 0;
+}
+
+.circle {
+  border-radius: 50%;
+  display: inline-block;
+  margin: auto;
+  width: 3.1rem;
+  height: 3.1rem;
+  text-align: center;
+}
+
+
+.h---400 {
+  height: 400px!important;
+}
+
+.h---500 {
+  height: 500px!important;
+}
+
+.plot-box {
+  border: solid 3px black;
+  background-color:white;
+  /*padding-top: 0.5em;*/
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-right:5px;
+  z-index: 1;
+}
+
+.plot-box:before {
+  position: absolute;
+  content: "design sketch";
+  padding: 5px;
+  margin-top: -0.5em;
+  margin-left: 0.5em;
+  background-color: #250033;
+  font-size: 12pt;
+  color: white;
+  z-index: 2;
+}

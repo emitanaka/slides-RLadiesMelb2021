@@ -1,0 +1,22 @@
+
+
+.bg-rladies {
+  background-color: #88398a!important;
+}
+
+.bg-rladies-dark {
+  background-color: #562457!important;
+  color: white;
+}
+
+.rladies-purple {
+  color: #88398a;
+}
+
+.rladies-purple-dark {
+  color: #562457;
+}
+
+.rladies-gray, .rladies-gray a, .rladies-gray code {
+  color: #d3d3d3;
+}
